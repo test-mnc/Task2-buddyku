@@ -35,8 +35,10 @@ type User struct {
 
 type Business interface {
 	PostPoint(data Core) (row int, err error)
+	GetPointByIdArticle(idArticle int) (data Core, err error)
 }
 
 type Data interface {
 	InsertPoint(data Core) (row int, err error)
+	SelectPointByIdArticle(idArticle int) (datra Core, err error)
 }

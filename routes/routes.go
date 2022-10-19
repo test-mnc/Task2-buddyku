@@ -28,5 +28,6 @@ func New(presenter factory.Presenter) *echo.Echo {
 	e.GET("company/users", presenter.UserPresenter.GetAllUsers, middlewares.JWTMiddleware())
 
 	e.POST("points", presenter.PointPresenter.InsertValue, middlewares.JWTMiddleware())
+	e.GET("points/:idArticle", presenter.PointPresenter.SelectPointPerArticle, middlewares.JWTMiddleware())
 	return e
 }

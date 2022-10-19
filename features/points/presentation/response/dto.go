@@ -6,44 +6,35 @@ import (
 )
 
 type Point struct {
-	ID        int    `json:"id"`
-	Value     string `json:"value"`
-	ArticleID int    `json:"article_id"`
-	CompanyID int    `json:"company_id"`
-	UserID    int    `json:"user_id"`
-	CreatedAt time.Time
+	ID        int       `json:"id"`
+	Value     string    `json:"value"`
+	CreatedAt time.Time `json:"created_at"`
 	Article   Article
 	Company   Company
 	User      User
 }
 
 type Article struct {
-	ID      int    `json:"id"`
-	Title   string `json:"title"`
-	Content string `json:"content"`
+	ID    int    `json:"id"`
+	Title string `json:"title"`
 }
 
 type Company struct {
 	ID           int    `json:"id"`
 	EmployeeName string `json:"employee_name"`
-	Email        string `gorm:"unique" json:"email"`
-	Password     string `json:"password"`
-	PhoneNumber  string `json:"phone_number"`
 }
 
 type User struct {
-	ID          int    `json:"id"`
-	FullName    string `json:"full_name"`
-	UserName    string `json:"user_name"`
-	Email       string `gorm:"unique" json:"email"`
-	Password    string `json:"password"`
-	PhoneNumber string `json:"phone_number"`
+	ID       int    `json:"id"`
+	FullName string `json:"full_name"`
+	UserName string `json:"user_name"`
 }
 
 func FromCore(data points.Core) Point {
 	return Point{
-		ID:    data.ID,
-		Value: data.Value,
+		ID:        data.ID,
+		Value:     data.Value,
+		CreatedAt: data.CreatedAt,
 		Article: Article{
 			ID:    data.Article.ID,
 			Title: data.Article.Title,

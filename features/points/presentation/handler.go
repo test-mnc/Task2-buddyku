@@ -69,3 +69,42 @@ func (h *PointHandler) SelectPointPerArticle(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data point article", _responsePoint.FromCore(res)))
 }
+
+func (h *PointHandler) SelectPointPerUser(c echo.Context) error {
+	idToken, errToken := middlewares.ExtractToken(c)
+	if errToken != nil {
+		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is unvalid"))
+	}
+
+	if idToken == 0 {
+		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is expired"))
+	}
+
+	UserID := c.Param("idUser")
+	intUser, _ := strconv.Atoi(UserID)
+
+	res, err := h.pointBusiness.GetPointByIdUser(intUser)
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to get data point user"))
+	}
+
+	var PlusValue []float64
+	for _, value := range res {
+		var responseUser _responsePoint.Point
+		responseUser.Value = value.Value
+
+		values, _ := strconv.ParseFloat(responseUser.Value, 64)
+		PlusValue = append(PlusValue, values)
+	}
+
+	var X float64
+	for i := 0; i < len(PlusValue); i++ {
+		X += PlusValue[i]
+	}
+
+	var result = map[string]interface{}{
+		"data":        _responsePoint.FromCoreList(res),
+		"total_point": X,
+	}
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data point user", result))
+}

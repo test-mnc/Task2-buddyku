@@ -37,3 +37,15 @@ func (repo *mysqlPointRepository) SelectPointByIdArticle(idArticle int) (points.
 
 	return point.toCore(), nil
 }
+
+func (repo *mysqlPointRepository) SelectPointByIdUser(idUser int) ([]points.Core, error) {
+	var point []Point
+
+	res := repo.db.Preload("User").Preload("Article").Preload("Company").Where("user_id = ?", idUser).Find(&point)
+
+	if res.Error != nil {
+		return nil, res.Error
+	}
+
+	return toCoreList(point), nil
+}

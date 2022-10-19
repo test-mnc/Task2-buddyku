@@ -25,7 +25,7 @@ func NewPointHandler(business points.Business) *PointHandler {
 func (h *PointHandler) InsertValue(c echo.Context) error {
 	idToken, errToken := middlewares.ExtractToken(c)
 	if errToken != nil {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is unvalid "))
+		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is unvalid"))
 	}
 
 	var givePoint = _requestPoint.Point{
@@ -52,11 +52,11 @@ func (h *PointHandler) InsertValue(c echo.Context) error {
 func (h *PointHandler) SelectPointPerArticle(c echo.Context) error {
 	idToken, errToken := middlewares.ExtractToken(c)
 	if errToken != nil {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is unvalid"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is unvalid"))
 	}
 
 	if idToken == 0 {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is expired"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is expired"))
 	}
 
 	ArticleID := c.Param("idArticle")
@@ -73,11 +73,11 @@ func (h *PointHandler) SelectPointPerArticle(c echo.Context) error {
 func (h *PointHandler) SelectPointPerUser(c echo.Context) error {
 	idToken, errToken := middlewares.ExtractToken(c)
 	if errToken != nil {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is unvalid"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is unvalid"))
 	}
 
 	if idToken == 0 {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("token is expired"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is expired"))
 	}
 
 	UserID := c.Param("idUser")

@@ -25,14 +25,11 @@ func (h *CompanyHandler) AddEmployee(c echo.Context) error {
 	var dataEmployee _requestCompany.Company
 	errBind := c.Bind(&dataEmployee)
 	if errBind != nil {
-		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to bind data, check your input"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("failed to bind data, check your input"))
 	}
 	v := validator.New()
 	errValidator := v.Struct(dataEmployee)
-	// errFullName := v.Var(dataUser.FullName, "required,alpha")
-	// if errFullName != nil {
-	// 	return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("fullname can only contains alphabet"))
-	// }
+
 	if len(dataEmployee.EmployeeName) == 0 {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("employeename must be filled"))
 	}
@@ -58,7 +55,7 @@ func (h *CompanyHandler) AddEmployee(c echo.Context) error {
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed(err.Error()))
 	}
-	return c.JSON(http.StatusOK, _helper.ResponseSuccesNoData("Succes to insert data"))
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesNoData("success to insert data"))
 }
 
 func (h *CompanyHandler) Login(c echo.Context) error {
@@ -67,11 +64,7 @@ func (h *CompanyHandler) Login(c echo.Context) error {
 	if errLog != nil {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("failed to bind data, check your input"))
 	}
-	// v := validator.New()
-	// errValidator := v.Struct(userLogin)
-	// if errValidator != nil {
-	// 	return c.JSON(http.StatusBadRequest, _helper.ResponseFailed(errValidator.Error()))
-	// }
+
 	token, employeeName, e := h.companyBusiness.LoginEmployee(employeeLogin.Email, employeeLogin.Password)
 	if e != nil {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("email or password incorrect"))

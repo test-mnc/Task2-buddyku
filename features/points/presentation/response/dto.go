@@ -9,9 +9,9 @@ type Point struct {
 	ID        int       `json:"id"`
 	Value     string    `json:"value"`
 	CreatedAt time.Time `json:"created_at"`
-	Article   Article
-	Company   Company
-	User      User
+	Article   Article   `json:"article"`
+	Company   Company   `json:"company"`
+	User      User      `json:"user"`
 }
 
 type Article struct {

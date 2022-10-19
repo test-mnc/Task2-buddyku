@@ -210,6 +210,79 @@ paths:
                     status: "error",
                     message: "failed to bind data, check your input",
                   }
+    get:
+      tags:
+        - "Company"
+      description: Bisa diaplikasikan ketika user ingin melihat profilnya
+      security:
+        - JWTAuth: []
+      responses:
+        '200':
+          description: Success Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/responseUserSuccess'
+              examples:
+                responseData1:
+                  description: response success 1
+                  value: {
+                     "data": {
+                        "id": 1,
+                        "full_name": "saka 1",
+                        "user_name": "saka satu",
+                        "email": "saka1@gmail.com",
+                        "phone_number": "082123",
+                        "created_at": "2022-10-18T06:42:06.332Z"
+                    },
+                    "message": "success to get data user",
+                    "status": "success"
+                  }
+        '400':
+          description: Failed Response
+          content:
+            application/json:
+              examples:
+                responseData1:
+                  description: response failed 1
+                  value: {
+                    status: "error",
+                    message: "invalid token",
+                  }
+                responseData2:
+                  description: response failed 2
+                  value: {
+                    status: "error",
+                    message: "unauthorized ",
+                  }
+        '401':
+          description: Failed Response
+          content:
+            application/json:
+              examples:
+                responseData1:
+                  description: response failed 1
+                  value: {
+                    status: "error",
+                    message: "unauthorized",
+                  }
+                responseData2:
+                  description: response failed 2
+                  value: {
+                    status: "error",
+                    message: "invalid or expired jwt",
+                  }
+        '500':
+          description: Failed Response
+          content:
+            application/json:
+              examples:
+                responseData1:
+                  description: response failed 1
+                  value: {
+                    status: "error",
+                    message: "failed to get data user",
+                  }
   /articles:
     post:
       tags:
@@ -376,7 +449,7 @@ paths:
     get:
       tags:
         - "Articles"
-      description: Bisa diaplikasikan ketika user ingin melihat detail artikrlnya
+      description: Bisa diaplikasikan ketika user ingin membaca artikel berdasarkan id artikel
       parameters:
         - in: path
           name: idArticle
@@ -399,8 +472,8 @@ paths:
                       "data": {
                           "data": {
                               "id": 45,
-                              "title": "Rumah Gelora Permata",
-                              "content": "Rumah Layak Huni di Kawasan Perkotaan dekat kampus Negeri",
+                              "title": "judul artikel",
+                              "content": "Konten artikel .............",
                               "created_at": "2022-07-22T01:43:41.031Z",
                               "user": {
                                   "id": 1,
@@ -411,28 +484,7 @@ paths:
                               },
                           },
                       },
-                      "message": "success to get data",
-                      "status": "success"
-                  }
-                responseData2:
-                  description: response success 2
-                  value: {
-                      "data": {
-                          "data": {
-                              "id": 45,
-                              "title": "Rumah Cisauk Tangerang",
-                              "content": "Rumah Dijual di Bogor RUMAH TAMAN DARMO PERMAI UTARA LT 135 LB 90 KT 3 KM 2 2LANTAI AC 2 UNIT 2200W SUDAH RENOV HARGA 50JT/TH (NETT)",
-                              "created_at": "2022-07-22T01:43:41.031Z",
-                              "user": {
-                                  "id": 1,
-                                  "full_name": "Vera Soniya",
-                                  "user_name": "veras",
-                                  "email": "vera@gmail.com",
-                                  "phone_number": "08123247689",
-                              },
-                          },
-                      },
-                      "message": "success to get data",
+                      "message": "success to get data article",
                       "status": "success"
                   }
         '400':
@@ -444,25 +496,14 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "failed id article not recognize",
-                  }
-        '500':
-          description: Failed Response
-          content:
-            application/json:
-              examples:
-                responseData1:
-                  description: response failed 1
-                  value: {
-                    status: "error",
-                    message: "failed to get data",
+                    message: "failed to get data article",
                   }
 
   /points/{idArticle}:
     get:
       tags:
         - Points
-      description: Ketika user penjual melihat history negosiasi atas rumah yang dijual
+      description: Ketika user dan employee ingin melihat point per artikel berdasarkan id artikel
       security:
         - JWTAuth: []
       parameters:
@@ -485,16 +526,25 @@ paths:
                   description: response success 1
                   value: {
                     status: "success",
-                    message: "success to get all data",
-                    data: 
-                    {
-                      "id": 1,
-                      "nego": "3 miliar",
-                      "user": {
-                        "id": 2,
-                        "full_name": "Ardi Hakim",
-                      }
-                      },
+                    message: "success to get data point article",
+                    data : {
+                        "id": 1,
+                        "value": "2.0",
+                        "created_at": "2022-10-18T15:48:29.465Z",
+                        "article": {
+                            "id": 2,
+                            "title": "testing"
+                        },
+                        "company": {
+                            "id": 2,
+                            "employee_name": "employee 1"
+                        },
+                        "user": {
+                            "id": 1,
+                            "full_name": "saka 1",
+                            "user_name": "saka satu"
+                        }
+                    },
                   }
         '400':
           description: Failed Response
@@ -505,19 +555,13 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "invalid token",
+                    message: "token is unvalid",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "missing or malformed jwt",
-                  }
-                responseData3:
-                  description: response failed 3
-                  value: {
-                    status: "error",
-                    message: "failed id house not recognize",
+                    message: "token is expired",
                   }
         '401':
           description: Failed Response
@@ -545,14 +589,14 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "failed to get all data",
+                    message: "failed to get data point article",
                   }
 
   /points/{idUser}:
     get:
       tags:
         - Points
-      description: Ketika user penjual melihat history negosiasi atas rumah yang dijual
+      description: Ketika user dan employee ingin melihat total point per user berdasar id user
       security:
         - JWTAuth: []
       parameters:
@@ -575,16 +619,48 @@ paths:
                   description: response success 1
                   value: {
                     status: "success",
-                    message: "success to get all data",
-                    data: 
-                    {
-                      "id": 1,
-                      "nego": "3 miliar",
-                      "user": {
-                        "id": 2,
-                        "full_name": "Ardi Hakim",
-                      }
-                      },
+                    message: "success to get data point user",
+                    "data": {
+                        "data": [
+                            {
+                                "id": 1,
+                                "value": "2.0",
+                                "created_at": "2022-10-18T15:48:29.465Z",
+                                "article": {
+                                    "id": 2,
+                                    "title": "testing"
+                                },
+                                "company": {
+                                    "id": 2,
+                                    "employee_name": "employee 1"
+                                },
+                                "user": {
+                                    "id": 1,
+                                    "full_name": "saka 1",
+                                    "user_name": "saka satu"
+                                }
+                            },
+                            {
+                                "id": 2,
+                                "value": "3.0",
+                                "created_at": "2022-10-19T03:12:45.402Z",
+                                "article": {
+                                    "id": 1,
+                                    "title": "testing"
+                                },
+                                "company": {
+                                    "id": 2,
+                                    "employee_name": "employee 1"
+                                },
+                                "user": {
+                                    "id": 1,
+                                    "full_name": "saka 1",
+                                    "user_name": "saka satu"
+                                }
+                            },                            
+                        ],
+                        "total_point": 5
+                    },
                   }
         '400':
           description: Failed Response
@@ -595,19 +671,13 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "invalid token",
+                    message: "token is unvalid",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "missing or malformed jwt",
-                  }
-                responseData3:
-                  description: response failed 3
-                  value: {
-                    status: "error",
-                    message: "failed id house not recognize",
+                    message: "token is expired",
                   }
         '401':
           description: Failed Response
@@ -635,7 +705,7 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "failed to get all data",
+                    message: "failed to get data point user",
                   }
   /points/users:
     get:
@@ -722,20 +792,20 @@ paths:
     post:
       tags:
         - Company
-      description: ketika User join sebagai kontraktor
+      description: ketika employee registrasi di aplikasi
       requestBody:
         content:
-          multipart/form-data:
+          application/json:
             schema:
               $ref: '#/components/schemas/requestCompany'
             examples:
               userData1:
                 description: "Example data  user 1"
                 value: {
-                  "full_name": "PT. Bintoro Bangun Indonesia",
-                  "user_name": "1-867624-3173-2-03481",
+                  "employee_name": "employee 1",
+                  "password": "employee1",
                   "phone_number": "0824-6743-1158",
-                  "email": "marketing@bintorobuild.co.id",
+                  "email": "employee1@gmail.com",
                 }
       responses:
         '200':
@@ -747,7 +817,7 @@ paths:
                   description: response success 1
                   value: {
                     "status": "success",
-                    "message": "success to create contractor",
+                    "message": "success to insert data",
                   }
         '400':
           description: Failed Response
@@ -758,59 +828,43 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "invalid token",
+                    message: "failed to bind data, check your input",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "missing or malformed jwt",
+                    message: "employeename must be filled",
                   }
                 responseData3:
                   description: response failed 3
                   value: {
                     status: "error",
-                    message: "already as join contractor",
+                    message: "invalid format email",
                   }
                 responseData4:
                   description: response failed 4
                   value: {
                     status: "error",
-                    message: "all input data must be filled",
+                    message: "password must be filled",
                   }
-        '401':
-          description: Failed Response
-          content:
-            application/json:
-              examples:
-                responseData1:
-                  description: response failed 1
+                responseData5:
+                  description: response failed 5
                   value: {
                     status: "error",
-                    message: "unauthorized",
+                    message: "phone number must be in numeric",
                   }
-                responseData2:
-                  description: response failed 2
+                responseData6:
+                  description: response failed 6
                   value: {
                     status: "error",
-                    message: "invalid or expired jwt",
-                  }
-        '500':
-          description: Failed Response
-          content:
-            application/json:
-              examples:
-                responseData1:
-                  description: response failed 1
-                  value: {
-                    status: "error",
-                    message: "failed to create contractor",
+                    message: "email already exist",
                   }
   /company/users:
     get:
       tags:
         - "Company"
-      description: Bisa diaplikasikan ketika user ingin melihat profilnya
+      description: Bisa diaplikasikan ketika employee/company ingin melihat all users register
       security:
         - JWTAuth: []
       responses:
@@ -824,15 +878,41 @@ paths:
                 responseData1:
                   description: response success 1
                   value: {
-                    "data": {
-                          "id": 7,
-                          "full_name": "andri gunawan",
-                          "user_name": "andri12",
-                          "email": "andrigunawan@gmail.com",
-                          "phone_number": "0811116666",
-                          "created_at": "2022-07-22T14:24:18.971Z",
-                    },
-                    "message": "success",
+                     "data": [
+                        {
+                            "id": 1,
+                            "full_name": "saka 1",
+                            "user_name": "saka satu",
+                            "email": "saka1@gmail.com",
+                            "phone_number": "082123",
+                            "created_at": "2022-10-18T06:42:06.332Z"
+                        },
+                        {
+                            "id": 2,
+                            "full_name": "saka 2",
+                            "user_name": "saka dua",
+                            "email": "saka2@gmail.com",
+                            "phone_number": "082123",
+                            "created_at": "2022-10-18T06:42:23.359Z"
+                        },
+                        {
+                            "id": 3,
+                            "full_name": "saka 3",
+                            "user_name": "sakatiga",
+                            "email": "saka3@gmail.com",
+                            "phone_number": "082123",
+                            "created_at": "2022-10-19T07:46:12.419Z"
+                        },
+                        {
+                            "id": 4,
+                            "full_name": "saka 4",
+                            "user_name": "saka empat",
+                            "email": "saka4@gmail.com",
+                            "phone_number": "082123",
+                            "created_at": "2022-10-19T07:58:59.725Z"
+                        }
+                    ],
+                    "message": "success to get data  all users",
                     "status": "success"
                   }
         '400':
@@ -844,13 +924,13 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "invalid token",
+                    message: "token is unvalid",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "missing or malformed jwt",
+                    message: "missing token",
                   }
         '401':
           description: Failed Response
@@ -878,7 +958,7 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "failed to get data user",
+                    message: "failed to get data all users",
                   }
   /company/points:
     post:
@@ -897,13 +977,13 @@ paths:
                 description: "Example data  user 1"
                 value: {
                   "id_article": 1,
-                  "value": 2750000000,
+                  "value": "3.0",
                 }
               userData2:
                 description: "Example data  user 2"
                 value: {
                   "id_article": 2,
-                  "value": 2000000000,
+                  "value": "4.0",
                 }
       responses:
         '200':
@@ -915,7 +995,7 @@ paths:
                   description: response success 1
                   value: {
                     "status": "success",
-                    "message": "Success to insert negotiation",
+                    "message": "success to insert data",
                   }
         '400':
           description: Failed Response
@@ -926,31 +1006,13 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "invalid token",
+                    message: "token is unvalid",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "missing or malformed jwt",
-                  }
-                responseData3:
-                  description: response failed 3
-                  value: {
-                    status: "error",
-                    message: "failed id house not recognize",
-                  }
-                responseData4:
-                  description: response failed 4
-                  value: {
-                    status: "error",
-                    message: "all input must be filled",
-                  }
-                responseData5:
-                  description: response failed 5
-                  value: {
-                    status: "error",
-                    message: "already nego",
+                    message: "failed to binding data",
                   }
         '401':
           description: Failed Response
@@ -978,13 +1040,13 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "failed to bind data",
+                    message: "failed to insert value",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "failed to insert negotiation",
+                    message: "failed to insert/record data",
                   }              
 
 components:
@@ -1034,31 +1096,6 @@ components:
         "phone_number":
           type: string
           minLength: 1
-        "address":
-          type: string
-          minLength: 1
-
-    requestUpdate:
-      type: object
-      properties:
-        "full_name":
-          type: string
-          minLength: 1
-        "email":
-          type: string
-          minLength: 1
-        "password":
-          type: string
-          minLength: 1
-        "phone_number":
-          type: string
-          minLength: 1
-        "address":
-          type: string
-          minLength: 1
-        "file":
-          type: string
-          format: binary
     requestArticle:
       type: object
       properties:
@@ -1084,28 +1121,16 @@ components:
     requestCompany:
       type: object
       properties:
-        "contractor_name":
-          type: string
-          minLength: 1
-        "number_siujk":
-          type: string
-          minLength: 1
-        "image_file":
-          type: string
-          format: binary
-        "certificate_file":
-          type: string
-          format: binary
-        "phone_number":
+        "employee_name":
           type: string
           minLength: 1
         "email":
           type: string
           minLength: 1
-        "address":
+        "password":
           type: string
           minLength: 1
-        "description":
+        "phone_number":
           type: string
           minLength: 1
     responseCompany:

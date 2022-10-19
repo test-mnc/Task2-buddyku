@@ -27,7 +27,7 @@ func (h *ArticleHandler) ReadArticleById(c echo.Context) error {
 	idArtic, _ := strconv.Atoi(id)
 	res, err := h.articleBusiness.GetArticleById(idArtic)
 	if err != nil {
-		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to get data article"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("failed to get data article"))
 	}
 
 	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data article", _responseArticle.FromCore(res)))

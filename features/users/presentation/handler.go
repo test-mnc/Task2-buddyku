@@ -91,23 +91,23 @@ func (h *UserHandler) GetUser(c echo.Context) error {
 	}
 
 	if idToken == 0 {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("unauthorized"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("unauthorized"))
 	}
 	result, err := h.userBusiness.SelectUser(idToken)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to get data user"))
 	}
-	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success", _responseUser.FromCore(result)))
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data user", _responseUser.FromCore(result)))
 }
 
 func (h *UserHandler) GetAllUsers(c echo.Context) error {
 	idToken, errToken := middlewares.ExtractToken(c)
 	if errToken != nil {
-		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token in unvalid"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is unvalid"))
 	}
 
 	if idToken == 0 {
-		return c.JSON(http.StatusUnauthorized, _helper.ResponseFailed("missing token"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("missing token"))
 	}
 
 	res, err := h.userBusiness.SelectAllUser()

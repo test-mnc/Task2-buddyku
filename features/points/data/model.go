@@ -8,13 +8,13 @@ import (
 
 type Point struct {
 	gorm.Model
-	Value     string `json:"value"`
-	ArticleID int    `json:"article_id"`
-	CompanyID int    `json:"company_id"`
-	UserID    int    `json:"user_id"`
-	Article   Article
-	Company   Company
-	User      User
+	Value     string  `json:"value"`
+	ArticleID int     `json:"article_id"`
+	CompanyID int     `json:"company_id"`
+	UserID    int     `json:"user_id"`
+	Article   Article `json:"article"`
+	Company   Company `json:"company"`
+	User      User    `json:"user"`
 }
 
 type Article struct {

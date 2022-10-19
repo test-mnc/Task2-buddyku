@@ -43,4 +43,5 @@ type Data interface {
 	InsertPoint(data Core) (row int, err error)
 	SelectPointByIdArticle(idArticle int) (datra Core, err error)
 	SelectPointByIdUser(idUser int) (data []Core, err error)
+	FirstPoint(idUser int, ArticleID int, CompanyID int, value string) (row int, idArticle int, err error)
 }

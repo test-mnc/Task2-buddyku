@@ -36,7 +36,7 @@ func (h *ArticleHandler) ReadArticleById(c echo.Context) error {
 func (h *ArticleHandler) PostingArticle(c echo.Context) error {
 	idUser, errToken := middlewares.ExtractToken(c)
 	if errToken != nil {
-		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is unvalid"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("invalid token"))
 	}
 	var article = _requestArticle.Article{
 		UserID: idUser,

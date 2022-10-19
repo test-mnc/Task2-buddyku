@@ -49,3 +49,18 @@ func (repo *mysqlPointRepository) SelectPointByIdUser(idUser int) ([]points.Core
 
 	return toCoreList(point), nil
 }
+
+func (repo *mysqlPointRepository) FirstPoint(idUser int, ArticleID int, CompanyID int, value string) (row int, idArticle int, err error) {
+	var point = Point{
+		Value:     value,
+		UserID:    idUser,
+		ArticleID: ArticleID,
+		CompanyID: CompanyID,
+	}
+
+	result := repo.db.Create(&point)
+	if result.Error != nil {
+		return 0, 0, result.Error
+	}
+	return 1, point.ArticleID, nil
+}

@@ -32,10 +32,6 @@ func InitFactory(dbConn *gorm.DB) Presenter {
 	userBusiness := _userBusiness.NewUserBusiness(userData)
 	UserPresentation := _userPresentation.NewUserHandler(userBusiness)
 
-	articleData := _articleData.NewArticleRepository(dbConn)
-	articleBusiness := _articleBusiness.NewArticleBusiness(articleData)
-	ArticlePresentation := _articlePresentation.NewArticleHandler(articleBusiness)
-
 	companyData := _companyData.NewCompanyRepository(dbConn)
 	companyBusiness := _companyBusiness.NewCompanyBusiness(companyData)
 	CompanyPresentation := _companyPresentation.NewCompanyHandler(companyBusiness)
@@ -43,6 +39,10 @@ func InitFactory(dbConn *gorm.DB) Presenter {
 	pointData := _pointData.NewPointRepository(dbConn)
 	pointBusiness := _pointBusiness.NewPointBusiness(pointData)
 	PointPresentation := _pointPresentation.NewPointHandler(pointBusiness)
+
+	articleData := _articleData.NewArticleRepository(dbConn)
+	articleBusiness := _articleBusiness.NewArticleBusiness(articleData, pointData)
+	ArticlePresentation := _articlePresentation.NewArticleHandler(articleBusiness)
 
 	return Presenter{
 		UserPresenter:    UserPresentation,

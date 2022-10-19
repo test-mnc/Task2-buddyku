@@ -13,8 +13,7 @@ servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
     url: https://virtserver.swaggerhub.com/faizalsundara/Test-BuddyKu/1.0.0
-  # - description: Domain Name Server
-  #   url: https://housefancy.site
+  
 tags:
   - name: Auth
     description: Authentication
@@ -58,11 +57,9 @@ paths:
                   value: {
                       "data": {
                           "full_name": "andri gunawan",
-                          "image_url": "https://storage.googleapis.com/bucket-project-capstone/default_profile.png",
-                          "is_contractor": false,
                           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTg1MDM2MjQsInVzZXJJZCI6N30.DFxWe18OoFhRAIt41dIDWPQPORI8S5rAkTylJiolnbc"
                       },
-                      "message": "LOGIN SUCCES",
+                      "message": "login success",
                       "status": "success"
                   }
         '400':
@@ -86,7 +83,7 @@ paths:
     post:
       tags:
         - Auth
-      description: Login user bisa digunakan ketika user sudah registrasi
+      description: Login bisa digunakan ketika employee sudah registrasi
       requestBody:
         content:
           application/json:
@@ -96,8 +93,8 @@ paths:
               userData1:
                 description: "Example data  user 1"
                 value: {
-                  email: "andrigunawan@gmail.com",
-                  password: "andri12"
+                  email: "employee1@gmail.com",
+                  password: "loginemployee"
                 }
       responses:
         '200':
@@ -111,12 +108,10 @@ paths:
                   description: response success 1
                   value: {
                       "data": {
-                          "full_name": "andri gunawan",
-                          "image_url": "https://storage.googleapis.com/bucket-project-capstone/default_profile.png",
-                          "is_contractor": false,
+                          "employee_name": "andri gunawan",
                           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTg1MDM2MjQsInVzZXJJZCI6N30.DFxWe18OoFhRAIt41dIDWPQPORI8S5rAkTylJiolnbc"
                       },
-                      "message": "LOGIN SUCCES",
+                      "message": "login success",
                       "status": "success"
                   }
         '400':
@@ -183,7 +178,7 @@ paths:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "username must be filled",
+                    message: "username must without space",
                   }
                 responseData3:
                   description: response failed 3
@@ -209,18 +204,12 @@ paths:
                     status: "error",
                     message: "email already exist",
                   }
-        '500':
-          description: Failed Response
-          content:
-            application/json:
-              examples:
-                responseData1:
-                  description: response failed 1
+                responseData7:
+                  description: response failed 6
                   value: {
                     status: "error",
                     message: "failed to bind data, check your input",
                   }
-
   /articles:
     post:
       tags:
@@ -237,8 +226,8 @@ paths:
               userData1:
                 description: "Example data  user 1"
                 value: {
-                  "title": "Rumah Taman Darmo Permai Utara",
-                  "content": "Rumah Dijual di Bogor RUMAH TAMAN DARMO PERMAI UTARA LT 135 LB 90 KT 3 KM 2 2LANTAI AC 2 UNIT 2200W SUDAH RENOV HARGA 50JT/TH (NETT)",
+                  "title": "Ini Judul Artikel",
+                  "content": "Ini Konten Artikel ..........",
                 }
       responses:
         '200':
@@ -252,9 +241,9 @@ paths:
                   description: response success 1
                   value: {
                     "data": {
-                        "id_house": 49
+                        "id_article": 1
                     },
-                    "message": "Succes to insert house",
+                    "message": "success to insert data",
                     "status": "success"
                   }
         '400':
@@ -269,16 +258,10 @@ paths:
                     "message": "invalid token",
                   }
                 responseData2:
-                  description: response failed 2
-                  value: {
-                    status: "error",
-                    message: "missing or malformed jwt",
-                  }
-                responseData3:
                   description: response failed 3
                   value: {
                     status: "error",
-                    message: "all input must be filled",
+                    message: "failed to insert bind data",
                   }
         '401':
           description: Failed Response
@@ -306,19 +289,13 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    "message": "failed to bind data",
+                    "message": "failed to insert data",
                   }
                 responseData2:
                   description: response failed 2
                   value: {
                     status: "error",
-                    message: "failed to insert house",
-                  }
-                responseData3:
-                  description: response failed 3
-                  value: {
-                    status: "error",
-                    message: "failed to insert house",
+                    message: "failed to insert/record data",
                   }
     get:
       tags:

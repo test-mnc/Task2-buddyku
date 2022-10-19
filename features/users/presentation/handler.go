@@ -27,17 +27,20 @@ func (h *UserHandler) AddUser(c echo.Context) error {
 	var dataUser _requestUser.User
 	errBind := c.Bind(&dataUser)
 	if errBind != nil {
-		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to bind data, check your input"))
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("failed to bind data, check your input"))
 	}
 	v := validator.New()
 	errValidator := v.Struct(dataUser)
-	// errFullName := v.Var(dataUser.FullName, "required,alpha")
-	// if errFullName != nil {
-	// 	return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("fullname can only contains alphabet"))
-	// }
+
 	if len(dataUser.FullName) == 0 {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("fullname must be filled"))
 	}
+
+	errUserName := v.Var(dataUser.UserName, "required,alphanumunicode")
+	if errUserName != nil {
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("username must without space"))
+	}
+
 	errEmail := v.Var(dataUser.Email, "required,email")
 	if errEmail != nil {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("invalid format email"))
@@ -69,11 +72,7 @@ func (h *UserHandler) Login(c echo.Context) error {
 	if errLog != nil {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("failed to bind data, check your input"))
 	}
-	// v := validator.New()
-	// errValidator := v.Struct(userLogin)
-	// if errValidator != nil {
-	// 	return c.JSON(http.StatusBadRequest, _helper.ResponseFailed(errValidator.Error()))
-	// }
+
 	token, fullName, e := h.userBusiness.LoginUser(userLogin.Email, userLogin.Password)
 	if e != nil {
 		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("email or password incorrect"))
@@ -82,7 +81,7 @@ func (h *UserHandler) Login(c echo.Context) error {
 		"full_name": fullName,
 		"token":     token,
 	}
-	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("LOGIN SUCCES", data))
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("login success", data))
 }
 
 func (h *UserHandler) GetUser(c echo.Context) error {

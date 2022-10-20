@@ -713,7 +713,7 @@ paths:
     get:
       tags:
         - Points
-      description: Ketika user penjual melihat history negosiasi atas rumah yang dijual
+      description: Ketika employee ingin melihat value terbesar dari employee untuk user
       security:
         - JWTAuth: []
       responses:
@@ -728,16 +728,63 @@ paths:
                   description: response success 1
                   value: {
                     status: "success",
-                    message: "success to get all data",
-                    data: 
-                    {
-                      "id": 1,
-                      "nego": "3 miliar",
-                      "user": {
-                        "id": 2,
-                        "full_name": "Ardi Hakim",
-                      }
-                      },
+                    message: "success to get data all point",
+                     "data": [
+                        {
+                            "id": 3,
+                            "value": 3,
+                            "created_at": "2022-10-20T03:31:40.225Z",
+                            "article": {
+                                "id": 2,
+                                "title": "testing1"
+                            },
+                            "company": {
+                                "id": 1,
+                                "employee_name": "employee 1"
+                            },
+                            "user": {
+                                "id": 1,
+                                "full_name": "saka 1",
+                                "user_name": "saka1"
+                            }
+                        },
+                        {
+                            "id": 2,
+                            "value": 1,
+                            "created_at": "2022-10-20T03:29:05.607Z",
+                            "article": {
+                                "id": 2,
+                                "title": "testing1"
+                            },
+                            "company": {
+                                "id": 1,
+                                "employee_name": "employee 1"
+                            },
+                            "user": {
+                                "id": 1,
+                                "full_name": "saka 1",
+                                "user_name": "saka1"
+                            }
+                        },
+                        {
+                            "id": 4,
+                            "value": 1,
+                            "created_at": "2022-10-20T03:38:47.184Z",
+                            "article": {
+                                "id": 3,
+                                "title": "testing2"
+                            },
+                            "company": {
+                                "id": 1,
+                                "employee_name": "employee 1"
+                            },
+                            "user": {
+                                "id": 2,
+                                "full_name": "saka 2",
+                                "user_name": "saka2"
+                            }
+                        }
+                    ]
                   }
         '400':
           description: Failed Response
@@ -748,19 +795,7 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "invalid token",
-                  }
-                responseData2:
-                  description: response failed 2
-                  value: {
-                    status: "error",
-                    message: "missing or malformed jwt",
-                  }
-                responseData3:
-                  description: response failed 3
-                  value: {
-                    status: "error",
-                    message: "failed id house not recognize",
+                    message: "token is unvalid",
                   }
         '401':
           description: Failed Response
@@ -788,7 +823,7 @@ paths:
                   description: response failed 1
                   value: {
                     status: "error",
-                    message: "failed to get all data",
+                    message: "failed to get data all point",
                   }
   /company:
     post:

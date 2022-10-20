@@ -64,3 +64,13 @@ func (repo *mysqlPointRepository) FirstPoint(idUser int, ArticleID int, CompanyI
 	}
 	return 1, point.ArticleID, nil
 }
+
+func (repo *mysqlPointRepository) SelectPointAllUsers() ([]points.Core, error) {
+	var point []Point
+	res := repo.db.Preload("User").Preload("Article").Preload("Company").Order("value desc").Find(&point)
+
+	if res.Error != nil {
+		return nil, res.Error
+	}
+	return toCoreList(point), nil
+}

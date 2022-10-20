@@ -28,3 +28,8 @@ func (uc *pointUsecase) GetPointByIdUser(idUser int) (res []points.Core, err err
 	res, err = uc.pointData.SelectPointByIdUser(idUser)
 	return res, err
 }
+
+func (uc *pointUsecase) GetPointAllUsers() (res []points.Core, err error) {
+	res, err = uc.pointData.SelectPointAllUsers()
+	return res, err
+}

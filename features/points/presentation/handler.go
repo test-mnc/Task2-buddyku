@@ -107,3 +107,19 @@ func (h *PointHandler) SelectPointPerUser(c echo.Context) error {
 	}
 	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data point user", result))
 }
+
+func (h *PointHandler) SelectAllPoints(c echo.Context) error {
+	idToken, _ := middlewares.ExtractToken(c)
+
+	if idToken == 0 {
+		return c.JSON(http.StatusBadRequest, _helper.ResponseFailed("token is unvalid"))
+	}
+
+	res, err := h.pointBusiness.GetPointAllUsers()
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to get data all point"))
+	}
+
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data all point", _responsePoint.FromCoreList(res)))
+}

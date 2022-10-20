@@ -93,8 +93,7 @@ func (h *PointHandler) SelectPointPerUser(c echo.Context) error {
 		var responseUser _responsePoint.Point
 		responseUser.Value = value.Value
 
-		values, _ := strconv.ParseFloat(responseUser.Value, 64)
-		PlusValue = append(PlusValue, values)
+		PlusValue = append(PlusValue, responseUser.Value)
 	}
 
 	var X float64

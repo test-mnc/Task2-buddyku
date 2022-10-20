@@ -977,13 +977,13 @@ paths:
                 description: "Example data  user 1"
                 value: {
                   "id_article": 1,
-                  "value": "3.0",
+                  "value": 3.0,
                 }
               userData2:
                 description: "Example data  user 2"
                 value: {
                   "id_article": 2,
-                  "value": "4.0",
+                  "value": 4,
                 }
       responses:
         '200':

@@ -7,7 +7,7 @@ import (
 
 type Point struct {
 	ID        int       `json:"id"`
-	Value     string    `json:"value"`
+	Value     float64   `json:"value"`
 	CreatedAt time.Time `json:"created_at"`
 	Article   Article   `json:"article"`
 	Company   Company   `json:"company"`

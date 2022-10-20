@@ -50,7 +50,7 @@ func (repo *mysqlPointRepository) SelectPointByIdUser(idUser int) ([]points.Core
 	return toCoreList(point), nil
 }
 
-func (repo *mysqlPointRepository) FirstPoint(idUser int, ArticleID int, CompanyID int, value string) (row int, idArticle int, err error) {
+func (repo *mysqlPointRepository) FirstPoint(idUser int, ArticleID int, CompanyID int, value float64) (row int, idArticle int, err error) {
 	var point = Point{
 		Value:     value,
 		UserID:    idUser,

@@ -4,7 +4,7 @@ import "time"
 
 type Core struct {
 	ID        int
-	Value     string
+	Value     float64
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	Article   Article
@@ -43,5 +43,5 @@ type Data interface {
 	InsertPoint(data Core) (row int, err error)
 	SelectPointByIdArticle(idArticle int) (datra Core, err error)
 	SelectPointByIdUser(idUser int) (data []Core, err error)
-	FirstPoint(idUser int, ArticleID int, CompanyID int, value string) (row int, idArticle int, err error)
+	FirstPoint(idUser int, ArticleID int, CompanyID int, value float64) (row int, idArticle int, err error)
 }

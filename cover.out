@@ -1,0 +1,6 @@
+mode: set
+test/mnc/features/users/business/usecase.go:11.57,15.2 1 1
+test/mnc/features/users/business/usecase.go:17.74,20.2 2 1
+test/mnc/features/users/business/usecase.go:22.106,25.2 2 1
+test/mnc/features/users/business/usecase.go:27.72,30.2 2 1
+test/mnc/features/users/business/usecase.go:32.70,35.2 2 1

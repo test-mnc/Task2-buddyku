@@ -25,7 +25,7 @@ func (uc *articleUsecase) GetArticleById(idArticle int) (data articles.Core, err
 func (uc *articleUsecase) PostArticle(inputArticle articles.Core) (row int, idArticle int, err error) {
 	row, idArticle, err = uc.articleData.InsertArticle(inputArticle)
 	if row == 1 {
-		row1, idArticle1, err1 := uc.pointData.FirstPoint(inputArticle.User.ID, idArticle, 1, "1.0")
+		row1, idArticle1, err1 := uc.pointData.FirstPoint(inputArticle.User.ID, idArticle, 1, 1)
 		return row1, idArticle1, err1
 	}
 	return row, idArticle, err

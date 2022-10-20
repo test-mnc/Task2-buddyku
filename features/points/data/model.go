@@ -8,7 +8,7 @@ import (
 
 type Point struct {
 	gorm.Model
-	Value     string  `json:"value"`
+	Value     float64 `json:"value"`
 	ArticleID int     `json:"article_id"`
 	CompanyID int     `json:"company_id"`
 	UserID    int     `json:"user_id"`

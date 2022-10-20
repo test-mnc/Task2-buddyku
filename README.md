@@ -19,8 +19,8 @@
 <!-- ABOUT THE PROJECT -->
 ### 💻 &nbsp;About The Project
 
-BuddyKu merupakan aplikasi untuk para konten kreator dan publiser bisa berkreasi dan berkarya. Project RESTful API BuddyKu dibangun dengan menggunakan bahasa Golang.    
-Dilengkapi dengan berbagai fitur yang memungkinkan user bisa mengakses data, mulai dari membuat akun, mempublish artikel, dan mendapatkan point dari artikelnya. Di sisi lain juga terdapat fitur yang mana company(employee) bisa memberikan point kepada user yang telah mempublish artikelnya. Agar user bisa mendapatkan point ketika mempublish artikel, maka harus ada employee yang register terlebih dahulu.
+BuddyKu merupakan aplikasi untuk para konten kreator dan publiser bisa berkreasi dan berkarya. Project RESTful API BuddyKu dibangun dengan menggunakan bahasa Golang.Dilengkapi dengan berbagai fitur yang memungkinkan user bisa mengakses data, mulai dari membuat akun, mempublish artikel, dan mendapatkan point dari artikelnya. Di sisi lain juga terdapat fitur yang mana company(employee) bisa memberikan point kepada user yang telah mempublish artikelnya. Agar user bisa mendapatkan point ketika mempublish artikel, maka harus ada employee yang register terlebih dahulu. 
+
 Adapun fitur yang ada dalam RESTful API kami antara lain :
 <div>
       <details>

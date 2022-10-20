@@ -19,7 +19,7 @@ func (uc *pointUsecase) PostPoint(inputPoint points.Core) (res int, err error) {
 	return res, err
 }
 
-func (uc *pointUsecase) GetPointByIdArticle(idArticle int) (res points.Core, err error) {
+func (uc *pointUsecase) GetPointByIdArticle(idArticle int) (res []points.Core, err error) {
 	res, err = uc.pointData.SelectPointByIdArticle(idArticle)
 	return res, err
 }

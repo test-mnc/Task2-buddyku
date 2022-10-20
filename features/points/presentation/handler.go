@@ -67,7 +67,7 @@ func (h *PointHandler) SelectPointPerArticle(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to get data point article"))
 	}
 
-	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data point article", _responsePoint.FromCore(res)))
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to get data point article", _responsePoint.FromCoreList(res)))
 }
 
 func (h *PointHandler) SelectPointPerUser(c echo.Context) error {

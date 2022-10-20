@@ -27,15 +27,15 @@ func (repo *mysqlPointRepository) InsertPoint(inputValue points.Core) (int, erro
 	return 1, nil
 }
 
-func (repo *mysqlPointRepository) SelectPointByIdArticle(idArticle int) (points.Core, error) {
-	var point Point
+func (repo *mysqlPointRepository) SelectPointByIdArticle(idArticle int) ([]points.Core, error) {
+	var point []Point
 
-	res := repo.db.Preload("Article").Preload("User").Preload("Company").Where("article_id = ?", idArticle).First(&point)
+	res := repo.db.Preload("Article").Preload("User").Preload("Company").Where("article_id = ?", idArticle).Find(&point)
 	if res.Error != nil {
-		return points.Core{}, res.Error
+		return nil, res.Error
 	}
 
-	return point.toCore(), nil
+	return toCoreList(point), nil
 }
 
 func (repo *mysqlPointRepository) SelectPointByIdUser(idUser int) ([]points.Core, error) {

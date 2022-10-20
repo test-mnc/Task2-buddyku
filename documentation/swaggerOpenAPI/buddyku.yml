@@ -108,7 +108,7 @@ paths:
                   description: response success 1
                   value: {
                       "data": {
-                          "employee_name": "andri gunawan",
+                          "employee_name": "employee 1",
                           "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NTg1MDM2MjQsInVzZXJJZCI6N30.DFxWe18OoFhRAIt41dIDWPQPORI8S5rAkTylJiolnbc"
                       },
                       "message": "login success",
@@ -836,7 +836,7 @@ paths:
                 value: {
                   "employee_name": "employee 1",
                   "password": "employee1",
-                  "phone_number": "0824-6743-1158",
+                  "phone_number": "082467431158",
                   "email": "employee1@gmail.com",
                 }
       responses:

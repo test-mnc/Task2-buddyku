@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "7aef70c5-082d-41e9-ae4a-c353942ac243",
+		"name": "BuddyKu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "21430324"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"saka2@gmail.com\",\r\n    \"password\": \"saka2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:80/login"
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"full_name\": \"saka 2\",\r\n    \"user_name\": \"saka2\",\r\n    \"email\": \"saka2@gmail.com\",\r\n    \"password\": \"saka2\",\r\n    \"phone_number\": \"082123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:80/users"
+					},
+					"response": []
+				},
+				{
+					"name": "User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODE4MDAsInVzZXJJZCI6Mn0.39T4ZSI_EL4Ha6kYcOc0ZrwAm_VJc9g8XgPE9N0mzCo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/users"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Company",
+			"item": [
+				{
+					"name": "registEmployee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"employee_name\": \"employee 1\",\r\n    \"email\": \"employee1@gmail.com\",\r\n    \"phone_number\": \"0823456\",\r\n    \"password\": \"employee1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:80/company"
+					},
+					"response": []
+				},
+				{
+					"name": "getAllUsers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODE4MDAsInVzZXJJZCI6Mn0.39T4ZSI_EL4Ha6kYcOc0ZrwAm_VJc9g8XgPE9N0mzCo"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/company/users"
+					},
+					"response": []
+				},
+				{
+					"name": "loginEmployee",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"employee1@gmail.com\",\r\n    \"password\": \"employee1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:80/company/login"
+					},
+					"response": []
+				},
+				{
+					"name": "points",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODIyOTIsInVzZXJJZCI6MX0.bPZ7f9XNIFU_XWOi1cEFr0Iz9vWj2si9Q2fnOShHnN4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"value\": 3.0,\r\n    \"user_id\": 1,\r\n    \"article_id\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:80/company/points"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "articles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODE4MDAsInVzZXJJZCI6Mn0.39T4ZSI_EL4Ha6kYcOc0ZrwAm_VJc9g8XgPE9N0mzCo"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"testing2\",\r\n    \"content\": \"testing content 2 ......\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "localhost:80/articles"
+					},
+					"response": []
+				},
+				{
+					"name": "articles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/articles/1"
+					},
+					"response": []
+				},
+				{
+					"name": "AllArticles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/articles"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Point",
+			"item": [
+				{
+					"name": "pointsperArticle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODIyOTIsInVzZXJJZCI6MX0.bPZ7f9XNIFU_XWOi1cEFr0Iz9vWj2si9Q2fnOShHnN4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/points/3"
+					},
+					"response": []
+				},
+				{
+					"name": "pointPerUser",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODIyOTIsInVzZXJJZCI6MX0.bPZ7f9XNIFU_XWOi1cEFr0Iz9vWj2si9Q2fnOShHnN4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/points/users/1"
+					},
+					"response": []
+				},
+				{
+					"name": "allPoints",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJleHAiOjE2NjYyODIyOTIsInVzZXJJZCI6MX0.bPZ7f9XNIFU_XWOi1cEFr0Iz9vWj2si9Q2fnOShHnN4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "localhost:80/points"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

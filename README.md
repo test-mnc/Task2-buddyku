@@ -4,7 +4,7 @@
 <br/>
 <div align="center">
 <a href="https://github.com/Group1-House-Fancy">
-    <img src="documentation/image/buddyku.jpg" alt="Logo" width="700">
+    <img src="documentation/image/buddyku.jpg" alt="Logo" width="300">
   </a>
   <h3 align="center">Project-Test "BuddyKu" </h3>
 

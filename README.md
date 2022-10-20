@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br/>
 <div align="center">
-<a href="https://github.com/Group1-House-Fancy">
+<a href="https://github.com/test-mnc/buddyku">
     <img src="documentation/image/buddyku.jpg" alt="Logo" width="300">
   </a>
   <h3 align="center">Project-Test "BuddyKu" </h3>
@@ -11,7 +11,7 @@
   <p align="center">
     Project Test Pembangunan RESTful API BuddyKu
     <br />
-    <a href="https://https://github.com/test-mnc/buddyku"><strong>Silahkan Kunjungi »</strong></a>
+    <a href="https://github.com/test-mnc/buddyku"><strong>Silahkan Kunjungi »</strong></a>
     <br />
   </p>
 </div>

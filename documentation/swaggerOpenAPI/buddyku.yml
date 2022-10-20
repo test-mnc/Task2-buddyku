@@ -1009,12 +1009,14 @@ paths:
                 description: "Example data  user 1"
                 value: {
                   "id_article": 1,
+                  "id_user": 2,
                   "value": 3.0,
                 }
               userData2:
                 description: "Example data  user 2"
                 value: {
                   "id_article": 2,
+                  "id_user": 1,
                   "value": 4,
                 }
       responses:
@@ -1165,19 +1167,6 @@ components:
         "phone_number":
           type: string
           minLength: 1
-    responseCompany:
-      type: object
-      properties: {
-        "status": {
-          type: string
-        },
-        "message": {
-          type: string
-        },
-        "data":{
-          type: object
-        }
-      }
     requestPoint:
       type: object
       properties:

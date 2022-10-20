@@ -62,3 +62,13 @@ func (h *ArticleHandler) PostingArticle(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("success to insert data", dataId))
 }
+
+func (h *ArticleHandler) ReadAllArticles(c echo.Context) error {
+	res, err := h.articleBusiness.GetAllArticles()
+
+	if err != nil {
+		return c.JSON(http.StatusInternalServerError, _helper.ResponseFailed("failed to get all article"))
+	}
+
+	return c.JSON(http.StatusOK, _helper.ResponseSuccesWithData("sucess to get all article", _responseArticle.FromCoreList(res)))
+}

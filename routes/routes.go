@@ -22,6 +22,7 @@ func New(presenter factory.Presenter) *echo.Echo {
 
 	e.GET("articles/:idArticle", presenter.ArticlePresenter.ReadArticleById)
 	e.POST("articles", presenter.ArticlePresenter.PostingArticle, middlewares.JWTMiddleware())
+	e.GET("articles", presenter.ArticlePresenter.ReadAllArticles)
 
 	e.POST("company/login", presenter.CompanyPresenter.Login)
 	e.POST("company", presenter.CompanyPresenter.AddEmployee)

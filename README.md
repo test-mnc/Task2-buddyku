@@ -3,7 +3,7 @@
 <!-- PROJECT LOGO -->
 <br/>
 <div align="center">
-<a href="https://github.com/test-mnc/buddyku">
+<a href="https://github.com/test-mnc/Task2-buddyku">
     <img src="documentation/image/buddyku.jpg" alt="Logo" width="300">
   </a>
   <h3 align="center">Project-Test "BuddyKu" </h3>
@@ -11,7 +11,7 @@
   <p align="center">
     Project Test Pembangunan RESTful API BuddyKu
     <br />
-    <a href="https://github.com/test-mnc/buddyku"><strong>Silahkan Kunjungi »</strong></a>
+    <a href="https://github.com/test-mnc/Task2-buddyku"><strong>Silahkan Kunjungi »</strong></a>
     <br />
   </p>
 </div>
@@ -20,7 +20,7 @@
 ### 💻 &nbsp;About The Project
 
 BuddyKu merupakan aplikasi untuk para konten kreator dan publiser bisa berkreasi dan berkarya. Project RESTful API BuddyKu dibangun dengan menggunakan bahasa Golang.    
-Dilengkapi dengan berbagai fitur yang memungkinkan user bisa mengakses data, mulai dari membuat akun, mempublish artikel, dan mendapatkan point dari artikelnya. Di sisi lain juga terdapat fitur yang mana company(employee) bisa memberikan point kepada user yang telah mempublish artikelnya.
+Dilengkapi dengan berbagai fitur yang memungkinkan user bisa mengakses data, mulai dari membuat akun, mempublish artikel, dan mendapatkan point dari artikelnya. Di sisi lain juga terdapat fitur yang mana company(employee) bisa memberikan point kepada user yang telah mempublish artikelnya. Agar user bisa mendapatkan point ketika mempublish artikel, maka harus ada employee yang register terlebih dahulu.
 Adapun fitur yang ada dalam RESTful API kami antara lain :
 <div>
       <details>

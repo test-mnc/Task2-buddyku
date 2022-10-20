@@ -212,7 +212,7 @@ paths:
                   }
     get:
       tags:
-        - "Company"
+        - "Users"
       description: Bisa diaplikasikan ketika user ingin melihat profilnya
       security:
         - JWTAuth: []
@@ -230,7 +230,7 @@ paths:
                      "data": {
                         "id": 1,
                         "full_name": "saka 1",
-                        "user_name": "saka satu",
+                        "user_name": "sakasatu",
                         "email": "saka1@gmail.com",
                         "phone_number": "082123",
                         "created_at": "2022-10-18T06:42:06.332Z"
@@ -374,21 +374,6 @@ paths:
       tags:
         - "Articles"
       description: Menampilkan semua artikel yang ada
-      parameters:
-        - in: query
-          name: limit
-          required: false
-          schema:
-            type: number
-            example: 1
-          description: limit
-        - in: query
-          name: offset
-          required: false
-          schema:
-            type: number
-            example: 1
-          description: offset
       responses:
         '200':
           description: Success Response
@@ -400,38 +385,48 @@ paths:
                 responseData1:
                   description: response success 1
                   value: {
-                      "data": {
                           "data": [
-                              {
-                                  "id": 5,
-                                  "title": "Rumah Strategis",
-                                  "content": "",
-                                  "created_at": "2022-07-21T07:35:13.303Z",
-                                  "user": {
-                                      "id": 1,
-                                      "full_name": "Vera Soniya",
-                                      "user_name": "Veras",
-                                      "email": "vera@gmail.com",
-                                      "phone_number": "08123247689",
-                                  }
-                              },
-                              {
-                                   "id": 6,
-                                  "title": "Rumah Strategis",
-                                  "content": "",
-                                  "created_at": "2022-07-21T07:40:55.416Z",
-                                  "user": {
-                                      "id": 4,
-                                      "full_name": "tyas",
-                                      "user_name": "tyas.aja",
-                                      "email": "tyas@gmail.com",
-                                      "phone_number": "087678",
-                                  },
-                              }
-                          ],
-                          "total_page": 9
-                      },
-                      "message": "success to get all data",
+                            {
+                                "id": 1,
+                                "title": "testing1",
+                                "content": "testing content 1 ......",
+                                "User": {
+                                    "id": 1,
+                                    "full_name": "saka 1",
+                                    "user_name": "saka1",
+                                    "email": "saka1@gmail.com",
+                                    "phone_number": "082123"
+                                },
+                                "created_at": "2022-10-20T03:28:38.239Z"
+                            },
+                            {
+                                "id": 2,
+                                "title": "testing1",
+                                "content": "testing content 1 ......",
+                                "User": {
+                                    "id": 1,
+                                    "full_name": "saka 1",
+                                    "user_name": "saka1",
+                                    "email": "saka1@gmail.com",
+                                    "phone_number": "082123"
+                                },
+                                "created_at": "2022-10-20T03:29:05.601Z"
+                            },
+                            {
+                                "id": 3,
+                                "title": "testing2",
+                                "content": "testing content 2 ......",
+                                "User": {
+                                    "id": 2,
+                                    "full_name": "saka 2",
+                                    "user_name": "saka2",
+                                    "email": "saka2@gmail.com",
+                                    "phone_number": "082123"
+                                },
+                                "created_at": "2022-10-20T03:38:47.173Z"
+                            }
+                        ],
+                      "message": "success to get all article",
                       "status": "success"
                   }
         '500':
@@ -709,7 +704,7 @@ paths:
                     status: "error",
                     message: "failed to get data point user",
                   }
-  /points/users:
+  /points:
     get:
       tags:
         - Points

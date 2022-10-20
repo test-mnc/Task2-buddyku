@@ -36,3 +36,13 @@ func (repo *mysqlArticleRepository) InsertArticle(input articles.Core) (int, int
 
 	return 1, int(article.ID), nil
 }
+
+func (repo *mysqlArticleRepository) SelectAllArticles() ([]articles.Core, error) {
+	var artcile []Article
+
+	res := repo.db.Preload("User").Find(&artcile)
+	if res.Error != nil {
+		return nil, res.Error
+	}
+	return toCoreList(artcile), nil
+}

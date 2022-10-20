@@ -30,3 +30,8 @@ func (uc *articleUsecase) PostArticle(inputArticle articles.Core) (row int, idAr
 	}
 	return row, idArticle, err
 }
+
+func (uc *articleUsecase) GetAllArticles() (data []articles.Core, err error) {
+	data, err = uc.articleData.SelectAllArticles()
+	return data, err
+}

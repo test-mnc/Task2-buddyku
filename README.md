@@ -98,7 +98,7 @@ Point merupakan fitur dimana user dan employee bisa melihat point yang diperoleh
 <details>
 
 ### Swagger
-<a href="https://app.swaggerhub.com/apis-docs/faizalsundara/Test-BuddyKu/1.0.0"><strong> Link »</strong></a>
+<a href="https://app.swaggerhub.com/apis-docs/faizalsundara/Test-BuddyKu/1.0.0" target=”_blank”><strong> Link »</strong></a>
 
 <!-- IMAGES -->
 ### 🖼&nbsp;Images
